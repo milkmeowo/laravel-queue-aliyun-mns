@@ -3,6 +3,7 @@
 Laravel 队列的阿里云消息服务（MNS）驱动。
 
 [![StyleCI PSR2](https://github.styleci.io/repos/135667835/shield)](https://github.styleci.io/repos/135667835)
+[![Build Status](https://www.travis-ci.org/milkmeowo/laravel-queue-aliyun-mns.svg?branch=master)](https://www.travis-ci.org/milkmeowo/laravel-queue-aliyun-mns)
 [![Latest Stable Version](https://poser.pugx.org/milkmeowo/laravel-mns/v/stable)](https://packagist.org/packages/milkmeowo/laravel-mns)
 [![Total Downloads](https://poser.pugx.org/milkmeowo/laravel-mns/downloads)](https://packagist.org/packages/milkmeowo/laravel-mns)
 [![Latest Unstable Version](https://poser.pugx.org/milkmeowo/laravel-mns/v/unstable)](https://packagist.org/packages/milkmeowo/laravel-mns)
