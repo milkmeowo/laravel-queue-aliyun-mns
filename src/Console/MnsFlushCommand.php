@@ -1,5 +1,17 @@
 <?php
 
+/*
+ * Laravel-Mns -- 阿里云消息队列（MNS）的 Laravel 适配。
+ *
+ * This file is part of the milkmeowo/laravel-mns.
+ *
+ * (c) Milkmeowo <milkmeowo@gmail.com>
+ * @link: https://github.com/milkmeowo/laravel-queue-aliyun-mns
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Milkmeowo\LaravelMns\Console;
 
 use AliyunMNS\Client;
@@ -41,6 +53,7 @@ class MnsFlushCommand extends Command
         $hasMessage = true;
         while ($hasMessage) {
             $this->info('拉取信息中...');
+
             try {
                 $response = $queue->batchPeekMessage(15);
                 if ($response->getMessages()) {
@@ -55,7 +68,7 @@ class MnsFlushCommand extends Command
             $response = $queue->batchReceiveMessage(new BatchReceiveMessageRequest(15, 30));
             $handles = [];
             /**
-             * @var  Message $message
+             * @var Message
              */
             foreach ($response->getMessages() as $message) {
                 $handles[] = $message->getReceiptHandle();
@@ -63,7 +76,7 @@ class MnsFlushCommand extends Command
             $response = $queue->batchDeleteMessage($handles);
             if ($response->isSucceed()) {
                 foreach ($handles as $handle) {
-                    $this->info(sprintf("信息: %s 删除成功", $handle));
+                    $this->info(sprintf('信息: %s 删除成功', $handle));
                 }
             }
         }

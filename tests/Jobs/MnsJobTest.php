@@ -1,10 +1,21 @@
 <?php
 
+/*
+ * Laravel-Mns -- 阿里云消息队列（MNS）的 Laravel 适配。
+ *
+ * This file is part of the milkmeowo/laravel-mns.
+ *
+ * (c) Milkmeowo <milkmeowo@gmail.com>
+ * @link: https://github.com/milkmeowo/laravel-queue-aliyun-mns
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Milkmeowo\LaravelMns\Test\Jobs;
 
 use AliyunMNS\Exception\MnsException;
 use AliyunMNS\Responses\ReceiveMessageResponse;
-use Carbon\Carbon;
 use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
 use Milkmeowo\LaravelMns\Jobs\MnsJob;
 use Milkmeowo\LaravelMns\Test\TestCase;
@@ -77,7 +88,7 @@ class MnsJobTest extends TestCase
             ->andReturn($this->receiptHandle);
         $this->mockedAdapter->shouldReceive('deleteMessage')
             ->with($this->receiptHandle)
-            ->andThrow(new MnsException(404,'not found'));
+            ->andThrow(new MnsException(404, 'not found'));
         $job->delete($this->receiptHandle);
         $this->assertFalse($job->isDeleted());
     }
@@ -112,7 +123,7 @@ class MnsJobTest extends TestCase
         $job = $this->getJob();
         $this->mockedResponse->shouldReceive('getMessageId')->andReturn($this->msgId);
 
-        $this->assertEquals($this->msgId,$job->getJobId());
+        $this->assertEquals($this->msgId, $job->getJobId());
     }
 
     private function getJob()

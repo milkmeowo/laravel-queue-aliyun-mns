@@ -1,5 +1,17 @@
 <?php
 
+/*
+ * Laravel-Mns -- 阿里云消息队列（MNS）的 Laravel 适配。
+ *
+ * This file is part of the milkmeowo/laravel-mns.
+ *
+ * (c) Milkmeowo <milkmeowo@gmail.com>
+ * @link: https://github.com/milkmeowo/laravel-queue-aliyun-mns
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Milkmeowo\LaravelMns\Test;
 
 use AliyunMNS\Exception\MessageNotExistException;
@@ -44,7 +56,7 @@ class MnsQueueTest extends TestCase
         $this->mockedJob = 'job';
         $this->mockedData = ['data'];
         $this->mockedPayload = json_encode([
-            'job' => $this->mockedJob,
+            'job'  => $this->mockedJob,
             'data' => $this->mockedData,
         ]);
 
@@ -79,7 +91,7 @@ class MnsQueueTest extends TestCase
     public function testPushProperlyPushesJobsOntoMns()
     {
         // 构造Mns队列对象
-        $queue = m::mock(MnsQueue::class . '[createPayload]', [$this->mnsAdapter, $this->waitSeconds])
+        $queue = m::mock(MnsQueue::class.'[createPayload]', [$this->mnsAdapter, $this->waitSeconds])
             ->shouldAllowMockingProtectedMethods();
 
         // 构造 createPayload 传 job data 应该输出payload
@@ -102,7 +114,7 @@ class MnsQueueTest extends TestCase
 
     public function testLaterProperlyPushesDelayedOntoMns()
     {
-        $queue = m::mock(MnsQueue::class . '[createPayload, secondsUntil]', [$this->mnsAdapter, $this->waitSeconds])
+        $queue = m::mock(MnsQueue::class.'[createPayload, secondsUntil]', [$this->mnsAdapter, $this->waitSeconds])
             ->shouldAllowMockingProtectedMethods();
 
         $queue->shouldReceive('createPayload')

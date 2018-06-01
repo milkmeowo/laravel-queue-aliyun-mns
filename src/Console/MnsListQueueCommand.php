@@ -1,5 +1,17 @@
 <?php
 
+/*
+ * Laravel-Mns -- 阿里云消息队列（MNS）的 Laravel 适配。
+ *
+ * This file is part of the milkmeowo/laravel-mns.
+ *
+ * (c) Milkmeowo <milkmeowo@gmail.com>
+ * @link: https://github.com/milkmeowo/laravel-queue-aliyun-mns
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Milkmeowo\LaravelMns\Console;
 
 use AliyunMNS\Client;
@@ -9,7 +21,6 @@ use Illuminate\Console\Command;
 
 class MnsListQueueCommand extends Command
 {
-
     /**
      * @var string
      */
@@ -38,19 +49,19 @@ class MnsListQueueCommand extends Command
             $prefix = $this->ask('请填写prefix');
         }
         $this->listQueue($client, $prefix);
-
     }
 
     /**
-     * 列出队列内容
+     * 列出队列内容.
      *
      * @param Client $client MNS Client
-     * @param null $prefix 前缀
-     * @param null $marker marker
+     * @param null   $prefix 前缀
+     * @param null   $marker marker
      */
-    function listQueue(Client $client, $prefix = NULL, $marker = NULL)
+    public function listQueue(Client $client, $prefix = null, $marker = null)
     {
         $request = new ListQueueRequest(null, $prefix, $marker);
+
         try {
             $res = $client->listQueue($request);
             $this->info('查询队列成功');
@@ -59,11 +70,11 @@ class MnsListQueueCommand extends Command
             }
             $marker = $res->getNextMarker();
             if ($marker) {
-                $this->question('---下一页:[' . base64_decode($marker) . ']---');
+                $this->question('---下一页:['.base64_decode($marker).']---');
                 $this->listQueue($client, $prefix, $marker);
             }
         } catch (MnsException $e) {
-            $this->error('查询队列失败:' . $e);
+            $this->error('查询队列失败:'.$e);
         }
     }
 }

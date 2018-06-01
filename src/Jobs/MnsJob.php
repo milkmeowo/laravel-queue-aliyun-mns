@@ -1,5 +1,17 @@
 <?php
 
+/*
+ * Laravel-Mns -- 阿里云消息队列（MNS）的 Laravel 适配。
+ *
+ * This file is part of the milkmeowo/laravel-mns.
+ *
+ * (c) Milkmeowo <milkmeowo@gmail.com>
+ * @link: https://github.com/milkmeowo/laravel-queue-aliyun-mns
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Milkmeowo\LaravelMns\Jobs;
 
 use AliyunMNS\Exception\MnsException;
@@ -18,19 +30,19 @@ class MnsJob extends Job implements JobContract
      */
     protected $job;
     /**
-     * Mns 适配器
+     * Mns 适配器.
      *
      * @var \Milkmeowo\LaravelMns\Adaptors\MnsAdapter
      */
     private $mns;
 
     /**
-     * Job 构造
+     * Job 构造.
      *
-     * @param \Illuminate\Container\Container $container Laravel容器
-     * @param \Milkmeowo\LaravelMns\Adaptors\MnsAdapter $mns Mns 适配器
-     * @param string $queue 队列
-     * @param \AliyunMNS\Responses\ReceiveMessageResponse $job 任务
+     * @param \Illuminate\Container\Container             $container Laravel容器
+     * @param \Milkmeowo\LaravelMns\Adaptors\MnsAdapter   $mns       Mns 适配器
+     * @param string                                      $queue     队列
+     * @param \AliyunMNS\Responses\ReceiveMessageResponse $job       任务
      */
     public function __construct(Container $container, MnsAdapter $mns, $queue, ReceiveMessageResponse $job)
     {
@@ -41,7 +53,7 @@ class MnsJob extends Job implements JobContract
     }
 
     /**
-     * 获取 Job 的 RawBody
+     * 获取 Job 的 RawBody.
      *
      * @return string
      */
@@ -51,7 +63,7 @@ class MnsJob extends Job implements JobContract
     }
 
     /**
-     * 从队列中删除
+     * 从队列中删除.
      */
     public function delete()
     {
@@ -67,7 +79,7 @@ class MnsJob extends Job implements JobContract
     }
 
     /**
-     * 释放 Job，重新回到队列
+     * 释放 Job，重新回到队列.
      *
      * @param int $delay 延迟时间
      */
@@ -94,22 +106,23 @@ class MnsJob extends Job implements JobContract
     {
         $nowInMilliSeconds = 1000 * microtime(true);
         $fromNowToNextVisibleTime = $nextVisibleTime - $nowInMilliSeconds;
-        $fromNowToNextVisibleTime = (int)($fromNowToNextVisibleTime / 1000);
+        $fromNowToNextVisibleTime = (int) ($fromNowToNextVisibleTime / 1000);
+
         return $fromNowToNextVisibleTime > 0 ? $fromNowToNextVisibleTime : 1;
     }
 
     /**
-     * Job 尝试次数
+     * Job 尝试次数.
      *
      * @return int
      */
     public function attempts()
     {
-        return (int)$this->job->getDequeueCount();
+        return (int) $this->job->getDequeueCount();
     }
 
     /**
-     * 获取 Job Id
+     * 获取 Job Id.
      *
      * @return string
      */

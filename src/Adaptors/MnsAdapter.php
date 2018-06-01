@@ -1,5 +1,17 @@
 <?php
 
+/*
+ * Laravel-Mns -- 阿里云消息队列（MNS）的 Laravel 适配。
+ *
+ * This file is part of the milkmeowo/laravel-mns.
+ *
+ * (c) Milkmeowo <milkmeowo@gmail.com>
+ * @link: https://github.com/milkmeowo/laravel-queue-aliyun-mns
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Milkmeowo\LaravelMns\Adaptors;
 
 use AliyunMNS\AsyncCallback;
@@ -27,7 +39,7 @@ use AliyunMNS\Responses\SendMessageResponse;
 use AliyunMNS\Responses\SetQueueAttributeResponse;
 
 /**
- * Class MNSAdapter
+ * Class MNSAdapter.
  *
  * @method string getQueueName()
  * @method SetQueueAttributeResponse setAttribute(QueueAttributes $attributes)
@@ -61,22 +73,23 @@ class MnsAdapter
      */
     const ADAPTER_TO_ALIYUN_MNS_SDK_VERSION = '1.3.5@2017-06-06';
     /**
-     * Aliyun MNS Client
+     * Aliyun MNS Client.
      *
-     * @var MnsClient $client
+     * @var MnsClient
      */
     private $client;
     /**
      * Aliyun MNS SDK Queue.
      *
-     * @var Queue $queue
+     * @var Queue
      */
     private $queue;
 
     /**
      * MnsAdapter constructor.
+     *
      * @param MnsClient $client
-     * @param string $queue
+     * @param string    $queue
      */
     public function __construct(MnsClient $client, string $queue)
     {
@@ -111,11 +124,12 @@ class MnsAdapter
         if (null != $queue) {
             $this->queue = $this->client->getQueueRef($queue);
         }
+
         return $this;
     }
 
     /**
-     * 创建队列
+     * 创建队列.
      *
      * @param string $queueName 队列名
      */
@@ -124,16 +138,17 @@ class MnsAdapter
         try {
             $request = new CreateQueueRequest($queueName);
             $response = $this->client->createQueue($request);
+
             return $response->isSucceed();
         } catch (MnsException $e) {
         }
     }
 
     /**
-     * 异步创建队列
+     * 异步创建队列.
      *
-     * @param string $queueName 队列名
-     * @param AsyncCallback|null $callback 异步回调
+     * @param string             $queueName 队列名
+     * @param AsyncCallback|null $callback  异步回调
      */
     public function createQueueAsync($queueName, AsyncCallback $callback = null)
     {
@@ -145,45 +160,46 @@ class MnsAdapter
     }
 
     /**
-     * 获取队列列表
+     * 获取队列列表.
      *
      * @param null $retNum 单次请求结果的最大返回个数，可以取1-1000范围内的整数值，默认值为1000。
      * @param null $prefix 按照该前缀开头的 queueName 进行查找。
      * @param null $marker 请求下一个分页的开始位置，一般从上次分页结果返回的NextMarker获取。
+     *
      * @return \AliyunMNS\Responses\ListQueueResponse
      */
     public function listQueue($retNum = null, $prefix = null, $marker = null)
     {
         try {
             $request = new ListQueueRequest($retNum, $prefix, $marker);
+
             return $this->client->listQueue($request);
         } catch (MnsException $e) {
-
         }
     }
 
     /**
-     * 获取队列列表
+     * 获取队列列表.
      *
-     * @param int $retNum 单次请求结果的最大返回个数，可以取1-1000范围内的整数值，默认值为1000。
-     * @param string $prefix 按照该前缀开头的 queueName 进行查找。
-     * @param string $marker 请求下一个分页的开始位置，一般从上次分页结果返回的NextMarker获取。
-     * @param AsyncCallback|NULL $callback
+     * @param int                $retNum   单次请求结果的最大返回个数，可以取1-1000范围内的整数值，默认值为1000。
+     * @param string             $prefix   按照该前缀开头的 queueName 进行查找。
+     * @param string             $marker   请求下一个分页的开始位置，一般从上次分页结果返回的NextMarker获取。
+     * @param AsyncCallback|null $callback
+     *
      * @return mixed
      */
-    public function listQueueAsync($retNum = NULL, $prefix = NULL, $marker = NULL, AsyncCallback $callback = NULL)
+    public function listQueueAsync($retNum = null, $prefix = null, $marker = null, AsyncCallback $callback = null)
     {
         try {
             $request = new ListQueueRequest($retNum, $prefix, $marker);
+
             return $this->client->listQueueAsync($request, $callback);
         } catch (MnsException $e) {
-
         }
-
     }
 
     /**
-     * 删除队列
+     * 删除队列.
      *
      * @param string $queueName 队列名
      */
@@ -191,18 +207,19 @@ class MnsAdapter
     {
         try {
             $response = $this->client->deleteQueue($queueName);
+
             return $response->isSucceed();
         } catch (MnsException $e) {
         }
     }
 
     /**
-     * 异步删除队列
+     * 异步删除队列.
      *
-     * @param string $queueName 队列名
-     * @param AsyncCallback|NULL $callback
+     * @param string             $queueName 队列名
+     * @param AsyncCallback|null $callback
      */
-    public function deleteQueueAsync($queueName, AsyncCallback $callback = NULL)
+    public function deleteQueueAsync($queueName, AsyncCallback $callback = null)
     {
         try {
             $this->client->deleteQueueAsync($queueName, $callback);
