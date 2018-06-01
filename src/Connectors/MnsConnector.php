@@ -1,0 +1,49 @@
+<?php
+
+namespace Milkmeowo\LaravelMns\Connectors;
+
+use AliyunMNS\Client as MnsClient;
+use Illuminate\Queue\Connectors\ConnectorInterface;
+use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
+use Milkmeowo\LaravelMns\MnsQueue;
+
+class MnsConnector implements ConnectorInterface
+{
+    /**
+     * 接口方法，连接器
+     *
+     * @param array $config
+     * @return \Illuminate\Contracts\Queue\Queue|MnsQueue
+     */
+    public function connect(array $config)
+    {
+        $adapter = $this->getAdapter($config);
+
+        return new MnsQueue($adapter, $config['wait_seconds']);
+    }
+
+    /**
+     * Mns 适配器
+     *
+     * @param array $config
+     * @return MnsAdapter
+     */
+    public function getAdapter(array $config)
+    {
+        $client = $this->getClient($config);
+
+        return new MnsAdapter($client, $config['queue']);
+
+    }
+
+    /**
+     * Mns Client
+     *
+     * @param array $config
+     * @return MnsClient
+     */
+    public function getClient(array $config)
+    {
+        return new MnsClient($config['endpoint'], $config['key'], $config['secret']);
+    }
+}

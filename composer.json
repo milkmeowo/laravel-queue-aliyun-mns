@@ -1,0 +1,41 @@
+{
+    "name": "milkmeowo/laravel-mns",
+    "description": "Aliyun Mns Driver For Laravel Queue",
+    "keywords": ["aliyun", "laravel", "queue", "mns"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "milkmeowo",
+            "email": "milkmeowo@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/queue": "^5.6",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.1",
+        "mockery/mockery": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "AliyunMNS\\": "lib/AliyunMNS/",
+            "Milkmeowo\\LaravelMns\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Milkmeowo\\LaravelMns\\Test\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Milkmeowo\\LaravelMns\\LaravelMnsServiceProvider"
+            ]
+        }
+    }
+}
