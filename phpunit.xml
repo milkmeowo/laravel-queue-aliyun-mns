@@ -12,6 +12,7 @@
     <testsuites>
         <testsuite name="Unit test">
             <directory suffix="Test.php">./tests</directory>
+            <exclude>./tests/Connectors</exclude>
         </testsuite>
     </testsuites>
     <filter>
