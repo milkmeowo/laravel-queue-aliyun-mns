@@ -55,7 +55,7 @@ class LaravelMnsServiceProvider extends ServiceProvider
      */
     protected function registerConnector($manager)
     {
-        $manager->addConnector('mns', function() {
+        $manager->addConnector('mns', function () {
             return new MnsConnector();
         });
     }
