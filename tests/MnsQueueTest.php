@@ -194,4 +194,18 @@ class MnsQueueTest extends TestCase
         $this->assertEquals($this->queueName, $queue->getQueue(null));
         $this->assertEquals('somequeue', $queue->getQueue('somequeue'));
     }
+
+    public function testGetMnsCanReturnMnsAdapter()
+    {
+        $queue = new MnsQueue($this->mnsAdapter, $this->waitSeconds);
+        $this->assertInstanceOf(MnsAdapter::class, $queue->getMns());
+    }
+
+    public function testSizeShouldThrowException()
+    {
+        $queue = new MnsQueue($this->mnsAdapter, $this->waitSeconds);
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('The size method is not support for aliyun-mns');
+        $queue->size();
+    }
 }
