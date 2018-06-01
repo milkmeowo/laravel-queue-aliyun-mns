@@ -14,11 +14,11 @@
 
 namespace Milkmeowo\LaravelMns\Test\Adaptors;
 
-use AliyunMNS\Client;
-use AliyunMNS\Queue;
-use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
-use Milkmeowo\LaravelMns\Test\TestCase;
 use Mockery as m;
+use AliyunMNS\Queue;
+use AliyunMNS\Client;
+use Milkmeowo\LaravelMns\Test\TestCase;
+use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
 
 class MnsAdapterTest extends TestCase
 {

@@ -14,9 +14,9 @@
 
 namespace Milkmeowo\LaravelMns\Test\Connectors;
 
-use Milkmeowo\LaravelMns\Connectors\MnsConnector;
 use Milkmeowo\LaravelMns\MnsQueue;
 use Milkmeowo\LaravelMns\Test\TestCase;
+use Milkmeowo\LaravelMns\Connectors\MnsConnector;
 
 class MnsConnectorTest extends TestCase
 {

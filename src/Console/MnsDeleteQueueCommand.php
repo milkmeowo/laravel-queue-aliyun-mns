@@ -15,8 +15,8 @@
 namespace Milkmeowo\LaravelMns\Console;
 
 use AliyunMNS\Client;
-use AliyunMNS\Exception\MnsException;
 use Illuminate\Console\Command;
+use AliyunMNS\Exception\MnsException;
 
 class MnsDeleteQueueCommand extends Command
 {

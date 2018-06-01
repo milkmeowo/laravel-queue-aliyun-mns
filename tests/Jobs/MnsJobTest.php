@@ -14,12 +14,12 @@
 
 namespace Milkmeowo\LaravelMns\Test\Jobs;
 
+use Mockery as m;
 use AliyunMNS\Exception\MnsException;
-use AliyunMNS\Responses\ReceiveMessageResponse;
-use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
 use Milkmeowo\LaravelMns\Jobs\MnsJob;
 use Milkmeowo\LaravelMns\Test\TestCase;
-use Mockery as m;
+use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
+use AliyunMNS\Responses\ReceiveMessageResponse;
 
 class MnsJobTest extends TestCase
 {

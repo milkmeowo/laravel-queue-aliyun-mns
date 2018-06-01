@@ -16,8 +16,8 @@ namespace Milkmeowo\LaravelMns\Console;
 
 use AliyunMNS\Client;
 use AliyunMNS\Model\Message;
-use AliyunMNS\Requests\BatchReceiveMessageRequest;
 use Illuminate\Console\Command;
+use AliyunMNS\Requests\BatchReceiveMessageRequest;
 
 class MnsFlushCommand extends Command
 {

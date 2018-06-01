@@ -16,11 +16,11 @@ namespace Milkmeowo\LaravelMns;
 
 use Illuminate\Support\ServiceProvider;
 use Milkmeowo\LaravelMns\Connectors\MnsConnector;
-use Milkmeowo\LaravelMns\Console\MnsCreateQueueCommand;
-use Milkmeowo\LaravelMns\Console\MnsDeleteQueueCommand;
 use Milkmeowo\LaravelMns\Console\MnsFlushCommand;
 use Milkmeowo\LaravelMns\Console\MnsListQueueCommand;
 use Milkmeowo\LaravelMns\Console\MnsShowQueueCommand;
+use Milkmeowo\LaravelMns\Console\MnsCreateQueueCommand;
+use Milkmeowo\LaravelMns\Console\MnsDeleteQueueCommand;
 
 class LaravelMnsServiceProvider extends ServiceProvider
 {

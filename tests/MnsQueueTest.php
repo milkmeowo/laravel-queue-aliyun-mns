@@ -14,15 +14,15 @@
 
 namespace Milkmeowo\LaravelMns\Test;
 
-use AliyunMNS\Exception\MessageNotExistException;
-use AliyunMNS\Requests\SendMessageRequest;
-use AliyunMNS\Responses\ReceiveMessageResponse;
-use AliyunMNS\Responses\SendMessageResponse;
-use Carbon\Carbon;
-use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
-use Milkmeowo\LaravelMns\Jobs\MnsJob;
-use Milkmeowo\LaravelMns\MnsQueue;
 use Mockery as m;
+use Carbon\Carbon;
+use Milkmeowo\LaravelMns\MnsQueue;
+use Milkmeowo\LaravelMns\Jobs\MnsJob;
+use AliyunMNS\Requests\SendMessageRequest;
+use AliyunMNS\Responses\SendMessageResponse;
+use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
+use AliyunMNS\Responses\ReceiveMessageResponse;
+use AliyunMNS\Exception\MessageNotExistException;
 
 class MnsQueueTest extends TestCase
 {
