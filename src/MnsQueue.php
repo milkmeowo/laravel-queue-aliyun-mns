@@ -14,12 +14,12 @@
 
 namespace Milkmeowo\LaravelMns;
 
-use AliyunMNS\Exception\MessageNotExistException;
-use AliyunMNS\Requests\SendMessageRequest;
-use Illuminate\Contracts\Queue\Queue as QueueContract;
 use Illuminate\Queue\Queue;
-use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
 use Milkmeowo\LaravelMns\Jobs\MnsJob;
+use AliyunMNS\Requests\SendMessageRequest;
+use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
+use AliyunMNS\Exception\MessageNotExistException;
+use Illuminate\Contracts\Queue\Queue as QueueContract;
 
 class MnsQueue extends Queue implements QueueContract
 {

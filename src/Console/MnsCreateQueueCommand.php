@@ -15,9 +15,9 @@
 namespace Milkmeowo\LaravelMns\Console;
 
 use AliyunMNS\Client;
+use Illuminate\Console\Command;
 use AliyunMNS\Exception\MnsException;
 use AliyunMNS\Requests\CreateQueueRequest;
-use Illuminate\Console\Command;
 
 class MnsCreateQueueCommand extends Command
 {

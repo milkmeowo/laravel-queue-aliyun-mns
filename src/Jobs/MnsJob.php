@@ -14,12 +14,12 @@
 
 namespace Milkmeowo\LaravelMns\Jobs;
 
-use AliyunMNS\Exception\MnsException;
-use AliyunMNS\Responses\ReceiveMessageResponse;
-use Illuminate\Container\Container;
-use Illuminate\Contracts\Queue\Job as JobContract;
 use Illuminate\Queue\Jobs\Job;
+use Illuminate\Container\Container;
+use AliyunMNS\Exception\MnsException;
 use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
+use AliyunMNS\Responses\ReceiveMessageResponse;
+use Illuminate\Contracts\Queue\Job as JobContract;
 
 class MnsJob extends Job implements JobContract
 {

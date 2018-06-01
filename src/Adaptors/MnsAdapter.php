@@ -14,29 +14,29 @@
 
 namespace Milkmeowo\LaravelMns\Adaptors;
 
+use AliyunMNS\Queue;
 use AliyunMNS\AsyncCallback;
 use AliyunMNS\Client as MnsClient;
-use AliyunMNS\Exception\MnsException;
-use AliyunMNS\Model\QueueAttributes;
-use AliyunMNS\Queue;
-use AliyunMNS\Requests\BatchDeleteMessageRequest;
-use AliyunMNS\Requests\BatchPeekMessageRequest;
-use AliyunMNS\Requests\BatchReceiveMessageRequest;
-use AliyunMNS\Requests\BatchSendMessageRequest;
-use AliyunMNS\Requests\CreateQueueRequest;
-use AliyunMNS\Requests\ListQueueRequest;
-use AliyunMNS\Requests\SendMessageRequest;
-use AliyunMNS\Responses\BatchDeleteMessageResponse;
-use AliyunMNS\Responses\BatchPeekMessageResponse;
-use AliyunMNS\Responses\BatchReceiveMessageResponse;
-use AliyunMNS\Responses\BatchSendMessageResponse;
-use AliyunMNS\Responses\ChangeMessageVisibilityResponse;
-use AliyunMNS\Responses\GetQueueAttributeResponse;
 use AliyunMNS\Responses\MnsPromise;
+use AliyunMNS\Model\QueueAttributes;
+use AliyunMNS\Exception\MnsException;
+use AliyunMNS\Requests\ListQueueRequest;
+use AliyunMNS\Requests\CreateQueueRequest;
+use AliyunMNS\Requests\SendMessageRequest;
 use AliyunMNS\Responses\PeekMessageResponse;
-use AliyunMNS\Responses\ReceiveMessageResponse;
 use AliyunMNS\Responses\SendMessageResponse;
+use AliyunMNS\Requests\BatchPeekMessageRequest;
+use AliyunMNS\Requests\BatchSendMessageRequest;
+use AliyunMNS\Responses\ReceiveMessageResponse;
+use AliyunMNS\Requests\BatchDeleteMessageRequest;
+use AliyunMNS\Responses\BatchPeekMessageResponse;
+use AliyunMNS\Responses\BatchSendMessageResponse;
+use AliyunMNS\Requests\BatchReceiveMessageRequest;
+use AliyunMNS\Responses\GetQueueAttributeResponse;
 use AliyunMNS\Responses\SetQueueAttributeResponse;
+use AliyunMNS\Responses\BatchDeleteMessageResponse;
+use AliyunMNS\Responses\BatchReceiveMessageResponse;
+use AliyunMNS\Responses\ChangeMessageVisibilityResponse;
 
 /**
  * Class MNSAdapter.

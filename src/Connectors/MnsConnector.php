@@ -15,9 +15,9 @@
 namespace Milkmeowo\LaravelMns\Connectors;
 
 use AliyunMNS\Client as MnsClient;
-use Illuminate\Queue\Connectors\ConnectorInterface;
-use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
 use Milkmeowo\LaravelMns\MnsQueue;
+use Milkmeowo\LaravelMns\Adaptors\MnsAdapter;
+use Illuminate\Queue\Connectors\ConnectorInterface;
 
 class MnsConnector implements ConnectorInterface
 {
