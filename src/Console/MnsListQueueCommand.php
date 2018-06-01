@@ -70,11 +70,11 @@ class MnsListQueueCommand extends Command
             }
             $marker = $res->getNextMarker();
             if ($marker) {
-                $this->question('---下一页:['.base64_decode($marker).']---');
+                $this->question('---下一页:[' . base64_decode($marker) . ']---');
                 $this->listQueue($client, $prefix, $marker);
             }
         } catch (MnsException $e) {
-            $this->error('查询队列失败:'.$e);
+            $this->error('查询队列失败:' . $e);
         }
     }
 }

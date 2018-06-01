@@ -47,7 +47,7 @@ class MnsFlushCommand extends Command
         if (!$queue) {
             $queue = $config['queue'];
         }
-        $this->alert('队列：'.$queue);
+        $this->alert('队列：' . $queue);
         $client = new Client($config['endpoint'], $config['key'], $config['secret']);
         $queue = $client->getQueueRef($queue);
         $hasMessage = true;

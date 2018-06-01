@@ -53,7 +53,7 @@ class MnsDeleteQueueCommand extends Command
             $this->info('队列删除成功');
             $this->alert($queue);
         } catch (MnsException $e) {
-            $this->error('队列删除失败:'.$e);
+            $this->error('队列删除失败:' . $e);
         }
     }
 }
