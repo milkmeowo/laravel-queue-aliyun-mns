@@ -18,6 +18,12 @@
     <filter>
         <whitelist>
             <directory suffix=".php">./src</directory>
+            <exclude>
+                <directory suffix="ServiceProvider.php">src/</directory>
+                <directory>src/Adaptors</directory>
+                <directory>src/Console</directory>
+                <directory>src/Connectors</directory>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>
