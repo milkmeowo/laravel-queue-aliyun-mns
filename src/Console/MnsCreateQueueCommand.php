@@ -55,7 +55,7 @@ class MnsCreateQueueCommand extends Command
             $this->info('队列创建成功');
             $this->alert($queue);
         } catch (MnsException $e) {
-            $this->error('队列创建失败:'.$e);
+            $this->error('队列创建失败:' . $e);
         }
     }
 }
