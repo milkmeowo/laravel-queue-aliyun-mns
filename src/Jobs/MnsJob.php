@@ -47,7 +47,7 @@ class MnsJob extends Job implements JobContract
     public function __construct(Container $container, MnsAdapter $mns, $queue, ReceiveMessageResponse $job)
     {
         $this->container = $container;
-        $this->mns = $mns->useQueue($queue);
+        $this->mns = $mns;
         $this->queue = $queue;
         $this->job = $job;
     }
@@ -69,7 +69,7 @@ class MnsJob extends Job implements JobContract
     {
         try {
             $receiptHandle = $this->job->getReceiptHandle();
-            $this->mns->deleteMessage($receiptHandle);
+            $this->mns->useQueue($this->queue)->deleteMessage($receiptHandle);
             // 删除成功
             $this->deleted = true;
         } catch (MnsException $exception) {
@@ -92,7 +92,7 @@ class MnsJob extends Job implements JobContract
             $delay = $this->fromNowToNextVisibleTime($this->job->getNextVisibleTime());
         }
         parent::release($delay);
-        $this->mns->changeMessageVisibility($this->job->getReceiptHandle(), $delay);
+        $this->mns->useQueue($this->queue)->changeMessageVisibility($this->job->getReceiptHandle(), $delay);
     }
 
     /**
