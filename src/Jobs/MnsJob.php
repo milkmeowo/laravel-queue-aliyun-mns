@@ -47,7 +47,7 @@ class MnsJob extends Job implements JobContract
     public function __construct(Container $container, MnsAdapter $mns, $queue, ReceiveMessageResponse $job)
     {
         $this->container = $container;
-        $this->mns = $mns;
+        $this->mns = $mns->useQueue($queue);
         $this->queue = $queue;
         $this->job = $job;
     }
